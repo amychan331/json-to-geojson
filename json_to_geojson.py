@@ -6,12 +6,14 @@ from json import load, dump
 def read_file():
     try:
         inputfile = input("Filename: ").strip(' ')
+        if not inputfile:
+            raise ValueError('Error: Missing input file')
         if inputfile[-5:] != '.json':
             raise ValueError('Error: Input file is not JSON file')
 
-        proppath = input("If the object holding the properties data in the JSON file is nested, input the path with comma separated each key (example: data,stations,0). If not, just press enter: ").strip(' ').split(",")
+        proppath = input("If the object holding the properties data in the JSON file is nested, input the path with dot separated each key (example: data.stations.0). If not, just press enter: ").strip(' ').split(".")
 
-        propkey = input("Input the property keys in the JSON file that you want inside the geojson's properties object, with comma separated each key (example: name, age, height) ").strip(' ').split(",")
+        propkey = input("Input the property keys in the JSON file that you want inside the geojson's properties object, with comma separated each key (example: name, age, height): ").strip(' ').split(",")
         if not propkey: raise ValueError('Error: Property keys are required.')
 
         longkey = input("JSON file's property key for longitude: ").strip(' ')
@@ -23,7 +25,7 @@ def read_file():
         jsonfile = load(fp)
         fp.close()
 
-        propobj = get_properties_obj(jsonfile, proppath, propkey)
+        propobj = get_properties_obj(jsonfile, proppath)
         return propobj, propkey, longkey, latkey
 
     except IOError:
@@ -72,11 +74,13 @@ def create_geojson(propobj, propkey, longkey, latkey):
 
 def main():
     propobj, propkey, longkey, latkey = read_file()
-    geojson = create_geojson(properties, propkey, longkey, latkey)
+    geojson = create_geojson(propobj, propkey, longkey, latkey)
 
     with open('convert.geojson', 'w') as f:
         dump(geojson, f, indent=2)
     f.close()
+
+    print("File conversion successful. You new GeoJSON is now available as convert.geojson.")
 
 
 if __name__ == '__main__':
