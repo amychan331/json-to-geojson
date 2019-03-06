@@ -34,5 +34,8 @@ The command line should then output the what information you should input. Note 
 
 
 ## Screenshot
+### Demo:
 <kbd>![Demo](./sample_input_process.png)</kbd>
+
+### Resulted GeoJSON File:
 <kbd>![Resulted GeoJSON file](./converted_geojson.png)</kbd>
