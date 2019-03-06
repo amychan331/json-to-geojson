@@ -7,7 +7,7 @@ It takes the input of: JSON file path, dot notation path of properties object if
 
 The program outputs a "convert.geojson" file, which holds data in GeoJSON format according to [RFC7946](https://tools.ietf.org/html/rfc7946). The features are contained by a FeatureCollection objects.
 
-Visit [placeholder] to read my post on how it got started and what I did.
+Visit [From D3 Meetup, To Jam Session, To Writing A JSON to GeoJSON Convertor](http://www.craftplustech.com/blog/?p=1909) to read my post on how it got started and what I did.
 
 ## Usage
 
@@ -34,5 +34,5 @@ The command line should then output the what information you should input. Note 
 
 
 ## Screenshot
-
-<!-- <kbd>![]()</kbd> -->
+<kbd>![Demo](./sample_input_process.png)</kbd>
+<kbd>![Resulted GeoJSON file](./converted_geojson.png)</kbd>
